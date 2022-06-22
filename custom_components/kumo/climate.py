@@ -95,7 +95,7 @@ async def async_setup_entry(hass: HomeAssistantType, entry: ConfigEntry, async_a
     coordinators = hass.data[DOMAIN][entry.entry_id][KUMO_DATA_COORDINATORS]
 
     entities = []
-    indor_unit_serials = await hass.async_add_executor_job(account.get_indoor_units)
+    indor_unit_serials = await hass.async_add_executor_job(account.get_all_units)
     for serial in indor_unit_serials:
         coordinator = coordinators[serial]
         entities.append(KumoThermostat(coordinator))
